@@ -1,6 +1,7 @@
 package me.wahyu.intentapp
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,6 +17,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val btnMoveWithData: Button = findViewById(R.id.btn_move_with_data)
         btnMoveWithData.setOnClickListener(this)
+
+        val btnDialPhone: Button = findViewById(R.id.btn_dial_number)
+        btnDialPhone.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -29,6 +33,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "John")
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 24)
                 startActivity(moveWithDataIntent)
+            }
+            R.id.btn_dial_number -> {
+                val phoneNumber = "08123456790"
+                val dialPhoneIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+                startActivity(dialPhoneIntent)
             }
         }
     }
